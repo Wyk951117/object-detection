@@ -1,12 +1,12 @@
 # CONFIGURE
-visible_GPU = "3,4"
+visible_GPU = "0"
 
 ##########################################################
 # change the path according to your project settings
-dataset_name = 'dac'
-project_path = '/home/yz2499/v2_yolo3'
-dataset_path = '/home/yz2499/dataset/data_training_March'
-yolov3_h5_file = '/home/yz2499/yolo3/model/yolov3.h5'
+dataset_name = 'voc'  # extract testset from voc dataset
+project_path = '/home/yw2227/usr/yikun/YOLOv3'
+dataset_path = project_path + '/data/dataset_template'
+yolov3_h5_file = project_path + '/model/yolov3.h5'
 ##########################################################
 
 
@@ -53,7 +53,7 @@ random = 1
 # score = 0.3
 # iou = 0.7
 
-num_epochs = 50
+num_epochs = 15   # number of epoches changed to 5, originally 50
 batch_size = 16
 threshold = 0.3
 ignore_thresh = 0.5

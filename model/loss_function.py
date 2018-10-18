@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
 
-import keras.backend as K
+import keras.backend as K   # added tensorflow
 import tensorflow as tf
 from configuration.config import ignore_thresh
 
