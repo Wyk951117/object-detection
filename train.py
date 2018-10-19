@@ -148,6 +148,7 @@ with graph.as_default():
             print("Begin validating...")
             start_time = time.time()
             mean_loss_valid = []
+            mean_score = []
             for batch in range(num_val_batches):
                 x_valid, box_data_valid, image_shape_valid, y_valid = get_dac_batch_data(batch, data_path_valid,
                     input_shape, anchors,train=False, num_classes=len(classes_data), max_boxes=20, load_previous=False)
@@ -158,7 +159,7 @@ with graph.as_default():
                                                                Y2: y_valid[1],
                                                                Y3: y_valid[2]})  # ,options=run_options)
 
-                out_boxes, _, _ = sess.run([boxes, scores, classes],
+                out_boxes,out_scores, _ = sess.run([boxes, scores, classes],
                                                                    feed_dict={X: (x_valid/255.),
                                                                               image_shappe: np.array(Image_size)
                                                                               # self.is_training: False
@@ -167,13 +168,17 @@ with graph.as_default():
                 # Flushes the event file to disk
                 validation_summary_writer.flush()
                 mean_loss_valid.append(loss_valid)
+                mean_score.append(out_scores)
                 print("{} boxes found in validation batch {}".format(len(out_boxes), batch))
+                print("Average Score: {}".format(np.mean(out_scores)))
 
             # calculate time
             duration = time.time() - start_time
             sec_per_batch = duration * 1.0 / num_val_batches
             mean_loss_valid = np.mean(mean_loss_valid)
+            mean_score = np.mean(mean_score)
             print("sec per batch while validation: {:.1f}".format(sec_per_batch))
+            print("averge score of current epoch: {}".format(mean_score))
             print("epoch {} / {} \ttrain_loss: {:.2f},\tvalid_loss: {:.2f}".format(epoch+1, num_epochs, mean_loss_train, mean_loss_valid))
 
             if(epoch % 10 == 0 or epoch == num_epochs-1):

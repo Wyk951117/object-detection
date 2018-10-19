@@ -4,7 +4,7 @@ visible_GPU = "0"
 ##########################################################
 # change the path according to your project settings
 dataset_name = 'voc'  # extract testset from voc dataset
-project_path = '/home/yw2227/usr/yikun/YOLOv3'
+project_path = '/home/yw2227/usr/yikun/object-detection'
 dataset_path = project_path + '/data/dataset_template'
 yolov3_h5_file = project_path + '/model/yolov3.h5'
 ##########################################################
