@@ -23,3 +23,11 @@
 #try:
 1. reading materials about anchor boxes (and scales), might come up with something espeically for human
 since current anchor boxes are intended for various objects.
+
+#observation:
+1. It seems that scales are used for literally three scales of objects in am image (large, medium, small)
+while anchor boxes are for predicting the offset of objects.
+
+#try:
+1. consider increasing the number of scales;
+2. might use K-clustering later for the choices of anchor boxes.
