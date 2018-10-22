@@ -31,3 +31,4 @@ while anchor boxes are for predicting the offset of objects.
 #try:
 1. consider increasing the number of scales;
 2. might use K-clustering later for the choices of anchor boxes.
+3. look to check the various conditions of DAC dataset since there are different categories of people represented.
