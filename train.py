@@ -176,9 +176,9 @@ with graph.as_default():
             duration = time.time() - start_time
             sec_per_batch = duration * 1.0 / num_val_batches
             mean_loss_valid = np.mean(mean_loss_valid)
-            mean_score = np.mean(mean_score)
+            #mean_score = np.mean(mean_score)
             print("sec per batch while validation: {:.1f}".format(sec_per_batch))
-            print("averge score of current epoch: {}".format(mean_score))
+            #print("averge score of current epoch: {}".format(mean_score))
             print("epoch {} / {} \ttrain_loss: {:.2f},\tvalid_loss: {:.2f}".format(epoch+1, num_epochs, mean_loss_train, mean_loss_valid))
 
             if(epoch % 10 == 0 or epoch == num_epochs-1):

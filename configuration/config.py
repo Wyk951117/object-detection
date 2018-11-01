@@ -3,9 +3,10 @@ visible_GPU = "0"
 
 ##########################################################
 # change the path according to your project settings
-dataset_name = 'voc'  # extract testset from voc dataset
+dataset_name = 'dac'  # extract testset from voc dataset
 project_path = '/home/yw2227/usr/yikun/object-detection'
-dataset_path = project_path + '/data/dataset_template'
+#dataset_path = project_path + '/data/dataset_template'
+dataset_path = '/home/yw2227/usr/yikun/dac_data'
 yolov3_h5_file = project_path + '/model/yolov3.h5'
 ##########################################################
 
@@ -53,7 +54,7 @@ random = 1
 # score = 0.3
 # iou = 0.7
 
-num_epochs = 15   # number of epoches changed to 5, originally 50
+num_epochs = 30   # number of epoches changed to 5, originally 50
 batch_size = 16
 threshold = 0.3
 ignore_thresh = 0.5

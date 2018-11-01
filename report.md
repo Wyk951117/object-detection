@@ -34,3 +34,17 @@ while anchor boxes are for predicting the offset of objects.
 3. look to check the various conditions of DAC dataset since there are different categories of people represented.
 4. modify the code of train.py
 5. anyway to try bigger dataset
+
+##Date: 10/22/2018
+
+#try:
+1. hada net 
+2. how many classes?
+3. cluster anchor boxes
+4. dynamic optimization
+5. get the DAC dataset
+
+##Date: 10/30/2018
+
+#observation:
+1. why is training loss larger than validation loss from the beginning?
