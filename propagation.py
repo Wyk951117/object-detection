@@ -145,8 +145,9 @@ class YOLO(object):
                                                                       self.image_shape: image_shape,
                                                                       # self.is_training: False
                                                                       })
-
+        avg_score = np.mean(out_scores)
         print('Found {} boxes for {}'.format(len(out_boxes), 'img'))
+        print('Average IOU: {}'.format(avg_score))
 
         # Visualisation#################################################################################################
         font = ImageFont.truetype(font=font_file, size=np.floor(3e-2 * image.size[1] + 0.5).astype(np.int32))
@@ -179,7 +180,7 @@ class YOLO(object):
             draw.rectangle([tuple(text_origin), tuple(text_origin + label_size)], fill=self.colors[c])
             draw.text(text_origin, label, fill=(0, 0, 0), font=font)
             del draw
-        return image
+        return image, avg_score
 
 def detect_video(yolo, video_path=None, output_video=None):
     import urllib.request as urllib
@@ -280,11 +281,13 @@ def detect_img(yolo, batch_number, input_img='', ):
     except:
         print('Open Error! Try again!')
     else:
-        r_image = yolo.detect_image(image)
+        r_image, total_score = yolo.detect_image(image)
+        print("Image IOU: {}".format(total_score))
         r_image.save(output_test_img_path+'/'+'result_'+output_name)
         # r_image.show()
     if(batch_number<0):
         yolo.sess.close()
+    return total_score
 
 def detect_one_batch(batch_number, input_img=''):
     if(args.train_batch>=0):
@@ -295,12 +298,15 @@ def detect_one_batch(batch_number, input_img=''):
     with open(annotation_path) as f:
         GG = f.readlines()
         # np.random.shuffle(GG)
+        total_score = []
         for line in (GG):
             line = line.split('$$')
             filename = line[0]
             if filename[-1] == '\n':
                 filename = filename[:-1]
-            detect_img(yolo_model, batch_number, filename)
+            score = detect_img(yolo_model, batch_number, filename)
+            total_score.append(score)
+        print("Total Average IOU: {}".format(np.mean(total_score)))
         f.close()
 
 if __name__ == '__main__':

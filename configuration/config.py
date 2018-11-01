@@ -54,7 +54,7 @@ random = 1
 # score = 0.3
 # iou = 0.7
 
-num_epochs = 30   # number of epoches changed to 5, originally 50
+num_epochs = 10   # number of epoches changed to 5, originally 50
 batch_size = 16
 threshold = 0.3
 ignore_thresh = 0.5
